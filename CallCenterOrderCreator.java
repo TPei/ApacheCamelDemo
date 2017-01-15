@@ -30,7 +30,7 @@ public class CallCenterOrderCreator {
 				}
 				
 				String fileName = BASE_NAME + (maxFileNum + 1) + ".txt";
-			    PrintWriter writer = new PrintWriter("/home/tpei/orders/" + fileName, "UTF-8");
+			    PrintWriter writer = new PrintWriter(DIRECTORY + "/" + fileName, "UTF-8");
 			    String[] orderStrings = generateRandomOrderString();
 			    for(String orderString : orderStrings){
 			    	writer.write(orderString + "\n");
@@ -39,9 +39,8 @@ public class CallCenterOrderCreator {
 			    // sleep for two minutes
 				Thread.sleep(TWO_MINUTES);
 			} catch (IOException e) {
-			   // do something
+				e.printStackTrace();
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -49,7 +48,7 @@ public class CallCenterOrderCreator {
 	
 	public static String[] generateRandomOrderString() {
 		Random rand = new Random();
-		int orders = rand.nextInt(10); // up to ten orders per file
+		int orders = rand.nextInt(9) + 1; // up to ten orders per file
 		String[] myStringArray = new String[orders];
 		
 		for(int i = 0; i < orders; i++) {
